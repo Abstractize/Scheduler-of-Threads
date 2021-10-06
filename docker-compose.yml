@@ -6,11 +6,13 @@ services:
     build:
       context: client
       dockerfile: Dockerfile
+      
   server:
     image: scheduler_server:latest
     build:
       context: server
       dockerfile: Dockerfile
+
   histogram:
     image: scheduler_histogram:latest
     build:
