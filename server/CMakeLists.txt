@@ -9,6 +9,8 @@ file(GLOB SOURCES
     src/*.h 
     src/**/*.h 
     src/**/*.c
+    src/**/**/*.h 
+    src/**/**/*.c
 )
 
 add_executable(Server ${SOURCES})

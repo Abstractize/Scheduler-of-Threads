@@ -1,4 +1,4 @@
-export class Histogram {
+export interface Histogram {
     name: string;
-    char_list: string[];
+    charList: string[];
 }

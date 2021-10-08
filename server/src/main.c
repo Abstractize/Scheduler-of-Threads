@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <ulfius.h>
-#include "api/routes.h"
+#include "api/routes/routes.h"
 
 #define PORT 8080
 
