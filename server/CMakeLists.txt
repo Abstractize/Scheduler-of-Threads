@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(Server VERSION 0.1.0)
 
 include(CTest)
@@ -9,6 +9,8 @@ file(GLOB SOURCES
     src/*.h 
     src/**/*.h 
     src/**/*.c
+    src/**/**/*.h 
+    src/**/**/*.c
 )
 
 add_executable(Server ${SOURCES})
