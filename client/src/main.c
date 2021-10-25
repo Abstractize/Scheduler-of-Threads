@@ -14,6 +14,7 @@
 #include <jansson.h>
 #include "infrastructure/services/hello-world-service.h"
 
+#define IN_SIZE 1000
 #define OBJ_MAIN "payload"
 #define OBJ_PAFN "filename"
 #define OBJ_PAFC "file_content"
@@ -47,11 +48,14 @@ int send_post(char *fcontent);
 void *thread_express(void *fcontent);
 
 /**
- * Send HTTP Post with JSON.
+ * Converts a JSON object into a string.
+ * @param text String output.
  * @author Arturo Mora
  * @date 10/25/2021
  */
 json_t *load_json(const char *text);
+
+
 int main(int argc, char *argv[])
 {
     {
@@ -80,6 +84,8 @@ int main(int argc, char *argv[])
             return -1;
         }
 
+
+        // Send first payload
         if (DEBUG)
         {
             printf("[D] Content:\n%s\n", fcontent);
@@ -90,10 +96,11 @@ int main(int argc, char *argv[])
             printf("[!] Cannot create thread\n");
         }
 
+        // Get Ready to other payloads
         while (0 == 0)
         {
             printf("[+] Ready for next payload:\n");
-            fgets(str, 500, stdin);
+            fgets(str, IN_SIZE, stdin);
             fcontent = &str[0];
             if (pthread_create(&t0, NULL, thread_express, (void *)fcontent) == -1)
             {
@@ -133,7 +140,7 @@ int read_file(char *filename, char **fcontent)
 
 int send_post(char *fcontent)
 {
-    char *url = "http://localhost:6969/server/"; // TODO = getenv("REST_URL");
+    char *url = getenv("REST_URL"); // or "http://localhost:6969/server/";
     CURL *curl;
     CURLcode res;
     curl_global_init(CURL_GLOBAL_ALL);
@@ -175,8 +182,7 @@ void *thread_express(void *fcontent)
         char *dfcontent = json_string_value(data_fn);
         char *rfcontent = 0;
         read_file(dfcontent, &rfcontent);
-        json_object_set(value, OBJ_PAFC, json_string(rfcontent));
-        //json_array_set(root, index, value);
+        json_object_set(value, OBJ_PAFC, json_string(rfcontent)); // Set New Key & Value
     }
     sfcontent = json_dumps(root, 0);
     send_post(sfcontent);
