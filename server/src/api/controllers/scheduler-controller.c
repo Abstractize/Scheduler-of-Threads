@@ -88,6 +88,7 @@ void priority(process* procs){
             {
                 finish = false;
             }
+            node = node.next;
         }
     }
 }

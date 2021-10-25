@@ -33,7 +33,7 @@ struct vowel_count_list setup_list(process* procs, double quantum_assign){
     struct vowel_count_list list;
     for (int i = 0; i < total_procs; i++)
     {
-        list_push(list, &procs[i],quantum_assign);
+        list_push(list, &procs[i], quantum_assign);
     }
     return list;
 }
