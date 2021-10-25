@@ -28,17 +28,17 @@ struct vowel_count_list
     struct vowel_count_node *start;
 };
 
-struct vowel_count_list setup_list(process* procs, double quantum_assign){
+struct vowel_count_list setup_count_list(process* procs, double quantum_assign){
     int total_procs = sizeof(procs);
     struct vowel_count_list list;
     for (int i = 0; i < total_procs; i++)
     {
-        list_push(list, &procs[i], quantum_assign);
+        push_count_element(list, &procs[i], quantum_assign);
     }
     return list;
 }
 
-void list_push(struct vowel_count_list list, process *proc_assign, double quantum_assign){
+void push_count_element(struct vowel_count_list list, process *proc_assign, double quantum_assign){
     struct vowel_count new_count = {
         .proc = proc_assign,
         .a_count = 0,

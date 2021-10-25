@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include "process.h"
@@ -36,23 +35,3 @@ void setup_proc(int Ta_assign, char* filename_assign, char* file_content_assign,
     new_proc->file_content = file_content_assign;
     push_proc(list, new_proc);
 }
-=======
-typedef struct
-{
-    int Ta;
-    char* filename;
-    char* file_content;
-} process;
-
-typedef struct
-{
-    process *count;
-    process_node *next;
-} process_node;
-
-typedef struct
-{
-    int size;
-    process_node *start;
-} process_list;
->>>>>>> 5e73bae... [add] Process list

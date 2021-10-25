@@ -73,7 +73,7 @@ void *vowel_counter(void *input){
 
 void priority(process* procs){
     bool finish = false;
-    struct vowel_count_list list = setup_list(procs, NULL);
+    struct vowel_count_list list = setup_count_list(procs, NULL);
     int len = list.size;
     while (!finish)
     {
