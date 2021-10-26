@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "curl.h": "c",
-        "yder.h": "c"
+        "yder.h": "c",
+        "process.h": "c"
     }
 }

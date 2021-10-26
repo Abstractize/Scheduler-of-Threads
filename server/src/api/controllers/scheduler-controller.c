@@ -57,38 +57,35 @@ void *vowel_counter(void *input){
         default:
             break;
         }
-        if (((struct vowel_count*)input)->quantum != NULL)
+        //endtime: if end - start > quant: return
+        clock_t end_quant = clock();
+        double cpu_time_used = ((double) (end_quant - begin_quant)) / CLOCKS_PER_SEC;
+        if (cpu_time_used > ((struct vowel_count*)input)->quantum)
         {
-            //endtime: if end - start > quant: return
-            clock_t end_quant = clock();
-            double cpu_time_used = ((double) (end_quant - begin_quant)) / CLOCKS_PER_SEC;
-            if (cpu_time_used > ((struct vowel_count*)input)->quantum)
-            {
-                return;
-            }
+            return;
         }
     } 
     ((struct vowel_count*)input)->is_finished = true;
 }
 
-void priority(process* procs){
+void priority(struct process_list procs){
     bool finish = false;
-    struct vowel_count_list list = setup_count_list(procs, NULL);
+    struct vowel_count_list list = setup_count_list(&procs, LONG_MAX);
     int len = list.size;
     while (!finish)
     {
-        struct vowel_count_node node = list.start;
+        struct vowel_count_node *node = list.start;
         finish = true;
         for (int i = 0; i < len; i++)
         {
             pthread_t tid;
-            pthread_create(&tid, NULL, vowel_counter, (void *)node.count);
+            pthread_create(&tid, NULL, vowel_counter, (void *)node->count);
             pthread_join(&tid, NULL);
-            if (finish && !node.count->is_finished)
+            if (finish && !node->count->is_finished)
             {
                 finish = false;
             }
-            node = node.next;
+            node = node->next;
         }
     }
 }
