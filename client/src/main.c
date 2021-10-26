@@ -12,7 +12,8 @@
 #include <curl/curl.h>
 #include <pthread.h>
 #include <jansson.h>
-#include "infrastructure/services/hello-world-service.h"
+
+#include "infrastructure/services/service.h"
 
 #define IN_SIZE 1000
 #define OBJ_MAIN "payload"
@@ -31,13 +32,6 @@
  */
 int read_file(char *filename, char **fcontent);
 
-/**
- * Send HTTP Post with JSON.
- * @author Arturo Mora
- * @param fcontent JSON file to send.
- * @date 10/22/2021
- */
-int send_post(char *fcontent);
 
 /**
  * Create new thread to handle Post.
@@ -138,33 +132,7 @@ int read_file(char *filename, char **fcontent)
     return EXIT_SUCCESS;
 }
 
-int send_post(char *fcontent)
-{
-    char *url = getenv("REST_URL"); // or "http://localhost:3000/server/";
-    CURL *curl;
-    CURLcode res;
-    curl_global_init(CURL_GLOBAL_ALL);
-    curl = curl_easy_init();
-    if (curl)
-    {
-        struct curl_slist *chunk = NULL;
-        chunk = curl_slist_append(chunk, "Content-Type: application/json");
 
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, fcontent);
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
-        {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-        }
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-        curl_slist_free_all(chunk);
-    }
-    curl_global_cleanup();
-    return EXIT_SUCCESS;
-}
 
 void *thread_express(void *fcontent)
 {
