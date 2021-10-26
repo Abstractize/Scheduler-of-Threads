@@ -4,7 +4,7 @@
 
 struct vowel_count
 {
-    process *proc;
+    struct process *proc;
     int a_count;
     int e_count;
     int i_count;
@@ -28,7 +28,7 @@ struct vowel_count_list
     struct vowel_count_node *start;
 };
 
-struct vowel_count_list setup_count_list(process* procs, double quantum_assign){
+struct vowel_count_list setup_count_list(struct process* procs, double quantum_assign){
     int total_procs = sizeof(procs);
     struct vowel_count_list list;
     for (int i = 0; i < total_procs; i++)
@@ -38,7 +38,7 @@ struct vowel_count_list setup_count_list(process* procs, double quantum_assign){
     return list;
 }
 
-void push_count_element(struct vowel_count_list list, process *proc_assign, double quantum_assign){
+void push_count_element(struct vowel_count_list list, struct process *proc_assign, double quantum_assign){
     struct vowel_count new_count = {
         .proc = proc_assign,
         .a_count = 0,
