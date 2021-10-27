@@ -3,7 +3,7 @@
 
 CURLcode send_post(char *fcontent)
 {
-    char *url = getenv("REST_URL"); // or "http://localhost:3000/server/";
+    char *url = "http://localhost:5000/server/";
     CURL *curl;
     CURLcode res;
     curl_global_init(CURL_GLOBAL_ALL);
