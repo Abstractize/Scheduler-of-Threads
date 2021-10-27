@@ -12,7 +12,7 @@ class Histogram extends Component<Props> {
     socket: any;
     constructor(props) {
         super(props);
-        this.socket = openSocket('<ADDRESS_TO_BACK_END_HERE>');
+        this.socket = openSocket('http://localhost:8080/websocket');
         this.socket.on(HistogramActionType.SUCCESS, data => {
             props.store.dispatch(ActionsCreators.GetSuccessHistogram(data));
         });

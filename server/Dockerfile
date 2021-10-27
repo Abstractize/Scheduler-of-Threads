@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     libulfius-dev \
     uwsc \
     wget \
-    build-essential
+    build-essential \
+    libcurl4-gnutls-dev
 
 # Install CMAKE
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2-Linux-x86_64.sh \

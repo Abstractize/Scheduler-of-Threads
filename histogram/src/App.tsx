@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-        <Histogram store={Store}/>
+        <Histogram/>
       </Provider>
     )
   }

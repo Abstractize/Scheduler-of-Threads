@@ -19,4 +19,4 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-target_link_libraries(${PROJECT_NAME} ulfius)
+target_link_libraries(${PROJECT_NAME} ulfius jansson orcania yder)
