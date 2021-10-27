@@ -15,4 +15,3 @@ int post_hello_world(const struct _u_request *request, struct _u_response *respo
 
   return U_CALLBACK_CONTINUE;
 }
-
