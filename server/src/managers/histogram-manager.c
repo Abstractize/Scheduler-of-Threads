@@ -31,7 +31,7 @@ void websocket_manager_callback(const struct _u_request * request,
     {
       sent_state = state;
       
-      json_t * message = json_pack("{sisisisisi}", "a", state.a, "e", state.e, "i", state.i, "o", state.o, "u", state.u);
+      json_t * message = json_pack("{sssisisisisi}", "name", state.name ,"a", state.a, "e", state.e, "i", state.i, "o", state.o, "u", state.u);
       char * json = json_dumps(message, JSON_COMPACT);
       int ret = ulfius_websocket_send_message(websocket_manager, U_WEBSOCKET_OPCODE_TEXT, strlen(json), json);
       o_free(json);

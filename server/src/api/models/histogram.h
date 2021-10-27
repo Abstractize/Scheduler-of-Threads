@@ -1,7 +1,9 @@
 #include <stdbool.h>
+#define BIGENOUGH 255
 
 typedef struct
 {
+    char name[BIGENOUGH];
     int a;
     int e;
     int i;
