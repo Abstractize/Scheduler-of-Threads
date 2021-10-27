@@ -1,7 +1,7 @@
 import { Reducer } from 'redux'
 import { HistogramActionType } from '../action-types/histogram-action-types'
 import { Action } from '../actions'
-import { Histogram } from '../states/histogram'
+import { createData, Histogram } from '../states/histogram'
 
 const initialState: Histogram = new Histogram();
 
@@ -12,22 +12,16 @@ const reducer: Reducer<Histogram, Action> = (
     if (state === undefined) return initialState
     switch (action.type) {
         case HistogramActionType.SUCCESS:
+            const data = action.data;
             return {
                 ...state,
-                data: action.data.results,
-                isFetching: false
-              };
-        case HistogramActionType.REQUEST:
-            return {
-                ...state,
-                isFetching: true,
-                error: null
+                data: createData(data.name, [data.a, data.e, data.i, data.o, data.u])
               };
         case HistogramActionType.FAILURE:
+            console.error(action.error);
             return {
                 ...state,
-                error: action.error,
-                isFetching: false
+                error: action.error
             }
         default:
             return state;

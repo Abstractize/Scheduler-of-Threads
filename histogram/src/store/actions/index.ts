@@ -1,3 +1,3 @@
-import { FailureHistogramAction, RequestHistogramAction, SuccessHistogramAction } from "./histogram";
+import { HistogramErrorAction, HistogramRecievedAction } from "./histogram";
 
-export type Action = RequestHistogramAction | SuccessHistogramAction | FailureHistogramAction;
+export type Action = HistogramRecievedAction | HistogramErrorAction;

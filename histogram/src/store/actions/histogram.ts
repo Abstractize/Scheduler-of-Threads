@@ -1,20 +1,17 @@
 import { HistogramActionType as  ActionType } from "../action-types/histogram-action-types";
 import { Action as ReduxAction} from "redux";
+import { Histogram } from "../../infrastructure/models/histogram";
 
 interface HistogramAction extends ReduxAction<ActionType> {
     type: ActionType;
 }
 
-export interface RequestHistogramAction extends HistogramAction {
-    type: ActionType.REQUEST;
-}
-
-export interface SuccessHistogramAction extends HistogramAction {
+export interface HistogramRecievedAction extends HistogramAction {
     type: ActionType.SUCCESS;
-    data: any
+    data: Histogram
 }
 
-export interface FailureHistogramAction extends HistogramAction {
+export interface HistogramErrorAction extends HistogramAction {
     type: ActionType.FAILURE;
     error: any;
 }

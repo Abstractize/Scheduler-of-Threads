@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import Histogram from './components/histogram';
+import configureStore from './store';
 import { Provider } from 'react-redux';
-import store from './store';
+import { HistogramService } from './infrastructure/services/histogram-service';
+import { Home } from './views/Home';
 
-const Store = store();
+const store = configureStore();
+const service = new HistogramService(store.dispatch);
 class App extends React.Component {
-  render() {
+  render(){
     return (
-      <Provider store={Store}>
-        <Histogram/>
+      <Provider store={store}>
+        <Home/>
       </Provider>
     )
   }
