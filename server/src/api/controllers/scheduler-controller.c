@@ -2,7 +2,7 @@
 #include "../models/lists.h"
 #include "../models/process.h"
 
-void *vowel_counter_priority(void *input){
+void *vowel_counter(void *input){
     clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
     strcpy(to_count, ((struct vowel_count*)input)->proc->file_content);
@@ -59,7 +59,7 @@ void *vowel_counter_priority(void *input){
     ((struct vowel_count*)input)->is_finished = true;
 }
 
-void *vowel_counter(void *input){
+void *vowel_counter_priority(void *input){
     clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
     strcpy(to_count, ((struct vowel_count*)input)->proc->file_content);
