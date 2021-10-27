@@ -1,9 +1,19 @@
-/**
- * Get a JSON Request.
- * @author Arturo Mora
- * @param request HTTP request.
- * @param response HTTP response.
- * @param userData Information attached to body.
- * @date 10/22/2021
- */
+#include <stdbool.h>
+#include <time.h>
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <pthread.h>
+#ifndef SCHEDULE_CONTROLLER_H
+#define SCHEDULE_CONTROLLER_H
+struct vowel_count_list count_list;
+bool continue_schedule;
+void *vowel_counter(void *input);
+void *vowel_counter_quant(void *input);
+void continue_schedule_method();
+void fcfs();
+void priority();
+void *scheduler();
 int callback_post(const struct _u_request *request, struct _u_response *response, void *userData);
+#endif

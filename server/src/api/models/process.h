@@ -1,5 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #ifndef PROCESS_HEADER_H
 #define PROCESS_HEADER_H
+
+#define BIGENOUGH 512
 
 struct process
 {
@@ -19,8 +24,8 @@ struct process_list
     int size;
     struct process_node *start;
 };
-
 struct process_list setup_list();
+
 void push_proc(struct process_list *list, struct process *process);
 void setup_proc(int Ta_assign, char* filename_assign, char* file_content_assign, struct process_list *list);
 
