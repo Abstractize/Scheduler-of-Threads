@@ -3,7 +3,6 @@
 #include "../models/process.h"
 
 void *vowel_counter(void *input){
-    clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
     strcpy(to_count, ((struct vowel_count*)input)->proc->file_content);
     int len = strlen(to_count);
