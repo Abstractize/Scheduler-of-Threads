@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdbool.h>
+
 #ifndef LISTS_HEADER_H
 #define LISTS_HEADER_H
 
@@ -9,7 +12,7 @@ struct vowel_count
     int i_count;
     int o_count;
     int u_count;
-    int start_point;
+    int current_point;
     int len;
     bool is_finished;
     double quantum;
@@ -27,7 +30,8 @@ struct vowel_count_list
     struct vowel_count_node *start;
 };
 
-struct vowel_count_list setup_count_list(struct process_list *procs, double quantum_assign);
-void push_count_element(struct vowel_count_list *list, struct process *proc_assign, double quantum_assign);
+struct vowel_count_list setup_count_list();
+void push_count_element(struct process *proc_assign, double quantum_assign);
+void clear_count();
 
 #endif

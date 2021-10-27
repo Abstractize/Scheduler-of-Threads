@@ -10,7 +10,10 @@
 #include <yder.h>
 #include <jansson.h>
 #include <ulfius.h>
+#include <pthread.h>
 #include "api/models/process.h"
+#include "api/models/lists.h"
+#include "api/controllers/scheduler-controller.h"
 
 #define PORT 6969
 #define PREFIX "/server"
@@ -50,7 +53,8 @@ int main(void)
   if (ulfius_start_framework(&instance) == U_OK)
   {
     y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[+] Server Listening...");
-
+    pthread_t tid;
+    pthread_create(&tid, NULL, scheduler, NULL);
     // Wait for the user to press <enter> on the console to quit the application
     getchar();
   }
@@ -75,32 +79,21 @@ int callback_post(const struct _u_request *request, struct _u_response *response
   size_t index = 0;
   json_t *value, *data_fn, *data_ta, *data_fc;
 
-  struct process_list list = setup_list();
-
   if (json_nb_payload != NULL)
   {
     *nb_sheep = json_object_size(obj);
     obj = json_object_get(json_nb_payload, OBJ_MAIN);
-    y_log_message(Y_LOG_LEVEL_DEBUG, "\t%s \t%s \t%s", "Index", "Ta", "Filename");
+    y_log_message(Y_LOG_LEVEL_DEBUG, "\t%s \t%s \t%s \t%s", "Index", "Ta", "Filename", "Content");
     json_array_foreach(obj, index, value)
     {
       // value = json_array_get(obj, index);         // Get element of array
       data_ta = json_object_get(value, OBJ_PATA); // Get Key OBJ_PATA
       data_fn = json_object_get(value, OBJ_PAFN); // Get Key OBJ_PAFN
       data_fc = json_object_get(value, OBJ_PAFC); // Get Key OBJ_PAFC
-      setup_proc(json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc), &list);
+      setup_proc(json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc), 0.3);
       
-      y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%i \t%s", index, json_integer_value(data_ta), json_string_value(data_fn));
+      y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%i \t%s \t%s", index, json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc));
     }
-    y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i", list.size);
-    struct process_node *node = list.start;
-    y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%s \t%s", node->proc->Ta, node->proc->filename, node->proc->file_content);
-    for (int i = 0; i < list.size - 1; i++)
-    {
-      node = node->next;
-      y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%s \t%s", node->proc->Ta, node->proc->filename, node->proc->file_content);
-    }
-    
   }
   json_decref(json_nb_payload);
   return U_CALLBACK_CONTINUE;

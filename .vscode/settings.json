@@ -2,6 +2,8 @@
     "files.associations": {
         "curl.h": "c",
         "yder.h": "c",
-        "process.h": "c"
+        "process.h": "c",
+        "lists.h": "c",
+        "scheduler-controller.h": "c"
     }
 }
