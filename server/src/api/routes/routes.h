@@ -3,4 +3,4 @@
 /**
  * Function that add Routes to the API
  */
-void add_routes(struct _u_instance *instance);
+void add_routes(struct _u_instance *instance, json_int_t payload);

@@ -11,11 +11,11 @@ int get_histrogram_data(const struct _u_request *request, struct _u_response *re
 {
   int ret;
 
-  if ((ret = ulfius_set_websocket_response(response, NULL, NULL, &websocket_manager_callback, NULL, NULL, NULL, NULL, NULL)) == U_OK) 
+  if ((ret = ulfius_set_websocket_response(response, NULL, NULL, &websocket_manager_callback, NULL, NULL, NULL, NULL, NULL)) == U_OK)
   {
     return U_CALLBACK_CONTINUE;
-  } 
-  else 
+  }
+  else
   {
     return U_CALLBACK_ERROR;
   }

@@ -6,7 +6,7 @@ import { Histogram } from "../models/histogram";
 @Service()
 export class HistogramService {
     private socket: WebSocket;
-    private urlpath: string = 'ws://localhost:8080/websocket';
+    private urlpath: string = 'ws://localhost:5000/websocket';
     constructor(dispatch) {
         this.socket = new WebSocket(this.urlpath);
 
