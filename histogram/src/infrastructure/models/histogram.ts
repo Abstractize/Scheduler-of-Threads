@@ -1,4 +1,8 @@
 export interface Histogram {
     name: string;
-    charList: string[];
+    a: number;
+    e: number;
+    i: number;
+    o: number;
+    u: number;
 }
