@@ -1,14 +1,25 @@
-#include <stdio.h>
-#include <ulfius.h>
-#include "api/routes/routes.h"
+/**
+ * @file main.c
+ * @brief Scheduler of threads server program. Receives payloads and Schedules threads
+ * @author Arturo Mora
+ *
+ * @date 10/21/2021
+ */
 
-#define PORT 8080
+#include <stdio.h>
+#include <yder.h>
+#include <jansson.h>
+#include <ulfius.h>
+#include "./api/models/process.h"
+#include "./api/routes/routes.h"
 
 int main(void)
 {
 
   struct _u_instance instance;
+  json_int_t payload = 0;
 
+  y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[+] Server Starting...");
   // Initialize instance with the port number
   if (ulfius_init_instance(&instance, PORT, NULL, NULL) != U_OK)
   {
@@ -17,20 +28,22 @@ int main(void)
   }
 
   // Endpoint list declaration
-  add_routes(&instance);
+  add_routes(&instance, payload);
 
   // Start the framework
   if (ulfius_start_framework(&instance) == U_OK)
   {
-    printf("Start framework on port %d\n", instance.port);
-    while(1);
+    y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[+] Server Listening...");
+
+    // Wait for the user to press <enter> on the console to quit the application
+    getchar();
   }
   else
   {
     fprintf(stderr, "Error starting framework\n");
     fprintf(stderr, "Error code: %i\n", ulfius_start_framework(&instance));
   }
-  printf("End framework\n");
+  y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[-] Server Stopping...");
 
   ulfius_stop_framework(&instance);
   ulfius_clean_instance(&instance);

@@ -1,0 +1,12 @@
+{
+    "payload": [
+        {
+            "Ta": 0,
+            "filename": "./test/dumbfile_1.txt"
+        },
+        {
+            "Ta": 42,
+            "filename": "./test/dumbfile_2.txt"
+        }
+    ]
+}
