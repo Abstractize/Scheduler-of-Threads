@@ -2,10 +2,9 @@
 #include <yder.h>
 #include <jansson.h>
 #include <ulfius.h>
-#include "./sheduler-manager.h"
 #include "../api/models/process.h"
 #include "../api/models/lists.h"
-#include "../api/models/process.h"
+#include "../data/models/vowel-list.h"
 
 void *vowel_counter(void *input)
 {

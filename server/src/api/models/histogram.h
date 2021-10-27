@@ -1,4 +1,7 @@
 #include <stdbool.h>
+#ifndef HISTOGRAM_HEADER_H
+#define HISTOGRAM_HEADER_H
+
 #define BIGENOUGH 255
 
 typedef struct
@@ -12,3 +15,5 @@ typedef struct
 } histogram_t;
 
 bool equals(histogram_t a, histogram_t b);
+
+#endif

@@ -25,4 +25,4 @@ set(CMAKE_USE_PTHREADS_INIT 1)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 include(CPack)
 
-target_link_libraries(${PROJECT_NAME} ulfius jansson orcania yder)
+target_link_libraries(${PROJECT_NAME} ulfius jansson orcania yder pthread)

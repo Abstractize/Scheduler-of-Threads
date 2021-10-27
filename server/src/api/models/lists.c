@@ -1,6 +1,7 @@
 #include "lists.h"
 #include "process.h"
-#include "../../managers/sheduler-manager.h"
+#include "../../data/models/vowel-list.h"
+#include "../../managers/scheduler-manager.h"
 
 struct vowel_count_list setup_count_list(){
     struct vowel_count_list list = {

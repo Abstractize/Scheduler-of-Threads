@@ -6,8 +6,8 @@
 #include <string.h>
 #include <pthread.h>
 
-struct vowel_count_list count_list;
-bool continue_schedule;
+#ifndef SCHEDULER_MANAGER_HEADER_H
+#define SCHEDULER_MANAGER_HEADER_H
 
 void *vowel_counter(void *input);
 void *vowel_counter_quant(void *input);
@@ -15,3 +15,5 @@ void continue_schedule_method();
 void fcfs();
 void priority();
 void *scheduler();
+
+#endif

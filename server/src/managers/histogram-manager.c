@@ -2,6 +2,7 @@
 #include <string.h>
 #include <ulfius.h>
 #include "../api/models/histogram.h"
+#include "../data/accessors/histogram-accessor.h"
 
 void websocket_manager_callback(const struct _u_request *request,
                                 struct _websocket_manager *websocket_manager,
@@ -15,18 +16,9 @@ void websocket_manager_callback(const struct _u_request *request,
   sent_state.u = -1;
 
   histogram_t state;
-  state.a = 0;
-  state.e = 0;
-  state.i = 0;
-  state.o = 0;
-  state.u = 0;
   for (;;)
   {
-
-    ++state.a;
-    ++state.e;
-    ++state.o;
-    ++state.u;
+    state = find();
     if (!equals(state, sent_state))
     {
       sent_state = state;
