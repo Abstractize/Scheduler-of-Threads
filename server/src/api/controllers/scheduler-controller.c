@@ -59,7 +59,7 @@ void *vowel_counter(void *input){
     ((struct vowel_count*)input)->is_finished = true;
 }
 
-void *vowel_counter_priority(void *input){
+void *vowel_counter_quant(void *input){
     clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
     strcpy(to_count, ((struct vowel_count*)input)->proc->file_content);
@@ -156,7 +156,7 @@ void priority(){
         while(node != NULL)
         {
             pthread_t tid;
-            pthread_create(&tid, NULL, vowel_counter_priority, (void *)node->count);
+            pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
             pthread_join(tid, NULL);
             if (finish && !node->count->is_finished)
             {

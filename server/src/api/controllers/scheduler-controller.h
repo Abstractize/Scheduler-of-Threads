@@ -12,8 +12,8 @@
 struct vowel_count_list count_list;
 bool continue_schedule;
 
-void *vowel_counter_priority(void *input);
 void *vowel_counter(void *input);
+void *vowel_counter_quant(void *input);
 void continue_schedule_method();
 void fcfs();
 void priority();
