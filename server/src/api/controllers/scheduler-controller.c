@@ -49,7 +49,6 @@ int callback_post(const struct _u_request *request, struct _u_response *response
     return U_CALLBACK_CONTINUE;
 }
 void *vowel_counter(void *input){
-    clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
     strcpy(to_count, ((struct vowel_count*)input)->proc->file_content);
     int len = strlen(to_count);
