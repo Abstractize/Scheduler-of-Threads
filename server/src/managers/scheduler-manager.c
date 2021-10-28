@@ -177,6 +177,27 @@ void priority()
     }
 }
 
+void lottery()
+{
+    bool finish = false;
+    while (!finish)
+    {
+        struct vowel_count_node *node = count_list.start;
+        finish = true;
+        while (node != NULL)
+        {
+            pthread_t tid;
+            pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
+            pthread_join(tid, NULL);
+            if (finish && !node->count->is_finished)
+            {
+                finish = false;
+            }
+            node = node->next;
+        }
+    }
+}
+
 void *scheduler()
 {
     continue_schedule = false;
