@@ -4,6 +4,7 @@
         "yder.h": "c",
         "process.h": "c",
         "lists.h": "c",
-        "scheduler-controller.h": "c"
+        "scheduler-controller.h": "c",
+        "stdlib.h": "c"
     }
 }

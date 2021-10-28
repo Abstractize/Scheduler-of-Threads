@@ -2,6 +2,7 @@
 #include <yder.h>
 #include <jansson.h>
 #include <ulfius.h>
+#include <time.h>
 #include "../api/models/process.h"
 #include "../api/models/lists.h"
 #include "../data/models/vowel-list.h"
@@ -156,7 +157,7 @@ void fcfs()
     }
 }
 
-void priority()
+void round_robin()
 {
     bool finish = false;
     while (!finish)
@@ -180,20 +181,39 @@ void priority()
 void lottery()
 {
     bool finish = false;
+
+    int indexes[count_list.size];
+    srand(time(NULL));
+    for (int i = 0; i < count_list.size; i++){
+        indexes[i] = i;
+    }
+    for (int i = 0; i < count_list.size - 1; ++i)
+    {
+        int j = rand() % (count_list.size - i) + i;
+        int temp = indexes[i];
+        indexes[i] = indexes[j];
+        indexes[j] = temp;
+    }
     while (!finish)
     {
         struct vowel_count_node *node = count_list.start;
         finish = true;
-        while (node != NULL)
-        {
-            pthread_t tid;
-            pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
-            pthread_join(tid, NULL);
-            if (finish && !node->count->is_finished)
+        for (int i = 0; i < count_list.size; i++){
+            while (node != NULL)
             {
-                finish = false;
+                if (indexes[i] == node->index)
+                {
+                    pthread_t tid;
+                    pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
+                    pthread_join(tid, NULL);
+                    if (finish && !node->count->is_finished)
+                    {
+                        finish = false;
+                    }
+                }
+                else
+                    node = node->next;
             }
-            node = node->next;
         }
     }
 }
@@ -206,9 +226,7 @@ void *scheduler()
     {
         if (count_list.size > 0)
         {
-            fcfs();
-            clear_count();
-            priority();
+            lottery();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)
             {

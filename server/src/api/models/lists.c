@@ -32,15 +32,19 @@ void push_count_element(struct process *proc_assign, double quantum_assign)
     count_list.end = new_node;
     if (count_list.start == NULL)
     {
+        new_node->index = 0;
         count_list.start = new_node;
     }
     else
     {
         struct vowel_count_node *last = count_list.start;
+        int last_index = last->index;
         while (last->next != NULL)
         {
             last = last->next;
+            last_index = last->index;
         }
+        new_node->index = last_index++;
         last->next = new_node;
     }
     count_list.size++;
