@@ -25,10 +25,6 @@ class Histogram extends Component<Props> {
             )
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>

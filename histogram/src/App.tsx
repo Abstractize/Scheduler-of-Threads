@@ -3,7 +3,7 @@ import './App.css';
 import configureStore from './store';
 import { Provider } from 'react-redux';
 import { HistogramService } from './infrastructure/services/histogram-service';
-import { Home } from './views/Home';
+import { Home } from './views/home';
 
 const store = configureStore();
 const service = new HistogramService(store.dispatch);
