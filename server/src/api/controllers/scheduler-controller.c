@@ -175,6 +175,7 @@ void *scheduler(){
             clear_count(); 
             priority();
             struct vowel_count_node *actual = count_list.start;
+            printf("List size: %i \n", count_list.size);
             while (actual != NULL)
             {
                 printf("%s \n", actual->count->proc->filename);
