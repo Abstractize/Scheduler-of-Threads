@@ -11,7 +11,7 @@ void *start_listener()
   // Initialize instance with the port number
   if (ulfius_init_instance(&instance, PORT, NULL, NULL) != U_OK)
   {
-    fprintf(stderr, "Error ulfius_init_instance, abort\n");
+    y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[!] Error: Instance creation...");
   }
 
   // Endpoint list declaration

@@ -13,5 +13,17 @@ export interface HistogramRecievedAction extends HistogramAction {
 
 export interface HistogramErrorAction extends HistogramAction {
     type: ActionType.FAILURE;
-    error: any;
+    error: Event;
+}
+
+export interface HistogramDecrement extends HistogramAction{
+    type: ActionType.DECREMENT
+}
+
+export interface HistogramIncrement extends HistogramAction{
+    type: ActionType.INCREMENT
+}
+
+export interface HistogramReset extends HistogramAction{
+    type: ActionType.RESET
 }

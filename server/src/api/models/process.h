@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../properties/const.h"
 #ifndef PROCESS_HEADER_H
 #define PROCESS_HEADER_H
-
-#define BIGENOUGH 512
 
 struct process
 {
