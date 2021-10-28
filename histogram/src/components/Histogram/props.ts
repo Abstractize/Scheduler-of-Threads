@@ -1,9 +1,11 @@
 import { Histogram } from "../../store/states/histogram";
+import * as HistogramActions from "../../store/action-creators/histogram-action-creators";
 
-// At runtime, Redux will merge together...
 export type Props =
   Histogram
+  & typeof HistogramActions.default
   & Properties
+
 
 interface Properties{
 
