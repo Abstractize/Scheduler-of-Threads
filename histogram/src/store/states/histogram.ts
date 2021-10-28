@@ -1,5 +1,5 @@
 import { ChartData } from "chart.js";
-
+import { Histogram as ModelHistogram } from "../../infrastructure/models/histogram";
 export function createData(name: string = "", newData: number[] = [0, 0, 0, 0, 0]): ChartData<"bar", number[], string> {
     return {
         labels: ['A', 'E', 'I', 'O', 'U'],
@@ -29,7 +29,16 @@ export function createData(name: string = "", newData: number[] = [0, 0, 0, 0, 0
 
 export class Histogram {
     constructor(
-        public data: ChartData<"bar", number[], string> = createData(),
-        public error: any = null
+        public processCount: number = 0,
+        public data: ModelHistogram = {
+            name: ['Value not Provided'],
+            a: [0],
+            e: [0],
+            i: [0],
+            o: [0],
+            u: [0]
+        },
+        public dataChart: ChartData<"bar", number[], string> = createData(),
+        public error: string = undefined
     ) { }
 }

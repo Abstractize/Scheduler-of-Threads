@@ -1,3 +1,3 @@
-import { HistogramErrorAction, HistogramRecievedAction } from "./histogram";
+import { HistogramDecrement, HistogramErrorAction, HistogramIncrement, HistogramRecievedAction, HistogramReset } from "./histogram";
 
-export type Action = HistogramRecievedAction | HistogramErrorAction;
+export type Action = HistogramRecievedAction | HistogramErrorAction | HistogramDecrement | HistogramIncrement | HistogramReset;
