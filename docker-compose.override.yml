@@ -10,7 +10,7 @@ services:
     stdin_open: true
     tty: true
     ports: 
-    - 8080:8080
+    - 5000:5000
   histogram:
     ports:
       - 3000:3000

@@ -11,8 +11,19 @@
 #include <jansson.h>
 #include <ulfius.h>
 #include "./api/routes/routes.h"
+#include "./managers/scheduler-manager.h"
 
 #define PORT 5000
+
+/**
+ * Get a JSON Request.
+ * @author Arturo Mora
+ * @param request HTTP request.
+ * @param response HTTP response.
+ * @param userData Information attached to body.
+ * @date 10/22/2021
+ */
+int callback_post(const struct _u_request *request, struct _u_response *response, void *userData);
 
 int main(void)
 {
@@ -34,7 +45,8 @@ int main(void)
   if (ulfius_start_framework(&instance) == U_OK)
   {
     y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[+] Server Listening...");
-
+    pthread_t tid;
+    pthread_create(&tid, NULL, scheduler, NULL);
     // Wait for the user to press <enter> on the console to quit the application
     getchar();
   }

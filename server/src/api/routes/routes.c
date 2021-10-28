@@ -1,7 +1,7 @@
 #include "routes.h"
 #include <ulfius.h>
 #include "../controllers/hello-world-controller.h"
-#include "../controllers/histrogram-controller.h"
+#include "../controllers/histogram-controller.h"
 #include "../controllers/scheduler-controller.h"
 #include <stdio.h>
 
