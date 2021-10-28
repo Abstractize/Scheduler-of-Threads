@@ -1,0 +1,2 @@
+#define BIGENOUGH 512
+#define HIST_PROCESS 10
