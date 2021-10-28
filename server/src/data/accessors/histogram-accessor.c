@@ -4,7 +4,7 @@
 
 histogram_t find()
 {
-    struct vowel_count_node *actual = count_list.start;
+    struct vowel_count_node *actual = count_list.end;
     histogram_t response;
     if (actual != NULL)
     {

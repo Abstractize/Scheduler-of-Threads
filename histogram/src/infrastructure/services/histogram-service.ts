@@ -10,6 +10,7 @@ export class HistogramService {
 
         this.socket.onmessage = (event) => {
             let response: Histogram = JSON.parse(event.data);
+            console.log(response);
             dispatch({type: HistogramActionType.SUCCESS, data: response} as HistogramRecievedAction)
         }
 

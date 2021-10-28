@@ -69,7 +69,7 @@ void *vowel_counter_quant(void *input)
     char to_count[BIGENOUGH];
     strcpy(to_count, ((vowel_count *)input)->proc->file_content);
     int len = strlen(to_count);
-
+    bool break_flag = false;
     for (int i = ((vowel_count *)input)->current_point; i < ((vowel_count *)input)->len; i++)
     {
         switch (to_count[i])
@@ -122,10 +122,12 @@ void *vowel_counter_quant(void *input)
         double cpu_time_used = ((double)(end_quant - begin_quant)) / CLOCKS_PER_SEC;
         if (cpu_time_used > ((vowel_count *)input)->quantum)
         {
-            return;
+            break_flag = true;
+            break;
         }
     }
-    ((vowel_count *)input)->is_finished = true;
+    if(!break_flag)
+        ((vowel_count *)input)->is_finished = true;
 }
 
 void continue_schedule_method()

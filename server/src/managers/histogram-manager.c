@@ -8,6 +8,7 @@ void websocket_manager_callback(const struct _u_request *request,
                                 struct _websocket_manager *websocket_manager,
                                 void *websocket_manager_user_data)
 {
+  y_log_message(Y_LOG_LEVEL_DEBUG, "Opening websocket_manager_callback");
   histogram_t sent_state;
   sent_state.a = -1;
   sent_state.e = -1;
@@ -30,7 +31,7 @@ void websocket_manager_callback(const struct _u_request *request,
       json_decref(message);
     }
 
-    if (ulfius_websocket_wait_close(websocket_manager, 5000) != U_WEBSOCKET_STATUS_OPEN)
+    if (ulfius_websocket_wait_close(websocket_manager, 1000) != U_WEBSOCKET_STATUS_OPEN)
       break;
   }
 

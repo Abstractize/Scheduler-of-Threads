@@ -11,6 +11,7 @@
 #include <jansson.h>
 #include <ulfius.h>
 #include "./api/routes/routes.h"
+#include "./managers/scheduler-manager.h"
 
 #define PORT 5000
 
@@ -44,7 +45,8 @@ int main(void)
   if (ulfius_start_framework(&instance) == U_OK)
   {
     y_init_logs("Server", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "[+] Server Listening...");
-
+    pthread_t tid;
+    pthread_create(&tid, NULL, scheduler, NULL);
     // Wait for the user to press <enter> on the console to quit the application
     getchar();
   }

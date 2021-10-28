@@ -28,6 +28,7 @@ struct vowel_count_list
 {
     int size;
     struct vowel_count_node *start;
+    struct vowel_count_node *end;
 };
 
 struct vowel_count_list setup_count_list();
