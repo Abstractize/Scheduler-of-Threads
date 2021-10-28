@@ -9,109 +9,109 @@
 void *vowel_counter(void *input)
 {
     char to_count[BIGENOUGH];
-    strcpy(to_count, ((struct vowel_count *)input)->proc->file_content);
+    strcpy(to_count, ((vowel_count *)input)->proc->file_content);
     int len = strlen(to_count);
 
-    for (int i = ((struct vowel_count *)input)->current_point; i < ((struct vowel_count *)input)->len; i++)
+    for (int i = ((vowel_count *)input)->current_point; i < ((vowel_count *)input)->len; i++)
     {
         switch (to_count[i])
         {
         case 'A':
-            ((struct vowel_count *)input)->a_count++;
+            ((vowel_count *)input)->a_count++;
             break;
 
         case 'a':
-            ((struct vowel_count *)input)->a_count++;
+            ((vowel_count *)input)->a_count++;
             break;
 
         case 'E':
-            ((struct vowel_count *)input)->e_count++;
+            ((vowel_count *)input)->e_count++;
             break;
 
         case 'e':
-            ((struct vowel_count *)input)->e_count++;
+            ((vowel_count *)input)->e_count++;
             break;
 
         case 'I':
-            ((struct vowel_count *)input)->i_count++;
+            ((vowel_count *)input)->i_count++;
             break;
 
         case 'i':
-            ((struct vowel_count *)input)->i_count++;
+            ((vowel_count *)input)->i_count++;
             break;
 
         case 'O':
-            ((struct vowel_count *)input)->o_count++;
+            ((vowel_count *)input)->o_count++;
             break;
 
         case 'o':
-            ((struct vowel_count *)input)->o_count++;
+            ((vowel_count *)input)->o_count++;
             break;
 
         case 'U':
-            ((struct vowel_count *)input)->u_count++;
+            ((vowel_count *)input)->u_count++;
             break;
 
         case 'u':
-            ((struct vowel_count *)input)->u_count++;
+            ((vowel_count *)input)->u_count++;
             break;
 
         default:
             break;
         }
     }
-    ((struct vowel_count *)input)->is_finished = true;
+    ((vowel_count *)input)->is_finished = true;
 }
 
 void *vowel_counter_quant(void *input)
 {
     clock_t begin_quant = clock();
     char to_count[BIGENOUGH];
-    strcpy(to_count, ((struct vowel_count *)input)->proc->file_content);
+    strcpy(to_count, ((vowel_count *)input)->proc->file_content);
     int len = strlen(to_count);
 
-    for (int i = ((struct vowel_count *)input)->current_point; i < ((struct vowel_count *)input)->len; i++)
+    for (int i = ((vowel_count *)input)->current_point; i < ((vowel_count *)input)->len; i++)
     {
         switch (to_count[i])
         {
         case 'A':
-            ((struct vowel_count *)input)->a_count++;
+            ((vowel_count *)input)->a_count++;
             break;
 
         case 'a':
-            ((struct vowel_count *)input)->a_count++;
+            ((vowel_count *)input)->a_count++;
             break;
 
         case 'E':
-            ((struct vowel_count *)input)->e_count++;
+            ((vowel_count *)input)->e_count++;
             break;
 
         case 'e':
-            ((struct vowel_count *)input)->e_count++;
+            ((vowel_count *)input)->e_count++;
             break;
 
         case 'I':
-            ((struct vowel_count *)input)->i_count++;
+            ((vowel_count *)input)->i_count++;
             break;
 
         case 'i':
-            ((struct vowel_count *)input)->i_count++;
+            ((vowel_count *)input)->i_count++;
             break;
 
         case 'O':
-            ((struct vowel_count *)input)->o_count++;
+            ((vowel_count *)input)->o_count++;
             break;
 
         case 'o':
-            ((struct vowel_count *)input)->o_count++;
+            ((vowel_count *)input)->o_count++;
             break;
 
         case 'U':
-            ((struct vowel_count *)input)->u_count++;
+            ((vowel_count *)input)->u_count++;
             break;
 
         case 'u':
-            ((struct vowel_count *)input)->u_count++;
+            ((vowel_count *)input)->u_count++;
             break;
 
         default:
@@ -120,12 +120,12 @@ void *vowel_counter_quant(void *input)
         //endtime: if end - start > quant: return
         clock_t end_quant = clock();
         double cpu_time_used = ((double)(end_quant - begin_quant)) / CLOCKS_PER_SEC;
-        if (cpu_time_used > ((struct vowel_count *)input)->quantum)
+        if (cpu_time_used > ((vowel_count *)input)->quantum)
         {
             return;
         }
     }
-    ((struct vowel_count *)input)->is_finished = true;
+    ((vowel_count *)input)->is_finished = true;
 }
 
 void continue_schedule_method()

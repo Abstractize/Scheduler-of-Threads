@@ -13,6 +13,6 @@ struct process
     char file_content[BIGENOUGH];
 };
 
-void setup_proc(int Ta_assign, char* filename_assign, char* file_content_assign, double quantum_assign);
+void setup_proc(int Ta_assign, const char* filename_assign, const char* file_content_assign, double quantum_assign);
 
 #endif

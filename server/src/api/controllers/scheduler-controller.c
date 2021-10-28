@@ -14,7 +14,7 @@ int callback_post(const struct _u_request *request, struct _u_response *response
 {
     json_t *json_nb_payload = ulfius_get_json_body_request(request, NULL), *json_body = NULL, *obj = NULL;
     json_int_t *nb_sheep = userData;
-
+    
     size_t index = 0;
     json_t *value, *data_fn, *data_ta, *data_fc;
 
@@ -29,8 +29,8 @@ int callback_post(const struct _u_request *request, struct _u_response *response
             data_ta = json_object_get(value, OBJ_PATA); // Get Key OBJ_PATA
             data_fn = json_object_get(value, OBJ_PAFN); // Get Key OBJ_PAFN
             data_fc = json_object_get(value, OBJ_PAFC); // Get Key OBJ_PAFC
+            
             setup_proc(json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc), 0.3);
-
             y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%i \t%s \t%s", index, json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc));
         }
     }

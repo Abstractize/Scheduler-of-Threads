@@ -4,7 +4,7 @@
 #ifndef LISTS_HEADER_H
 #define LISTS_HEADER_H
 
-struct vowel_count
+typedef struct
 {
     struct process *proc;
     int a_count;
@@ -16,11 +16,11 @@ struct vowel_count
     int len;
     bool is_finished;
     double quantum;
-};
+} vowel_count;
 
 struct vowel_count_node
 {
-    struct vowel_count *count;
+    vowel_count *count;
     struct vowel_count_node *next;
 };
 
