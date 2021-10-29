@@ -2,10 +2,24 @@
 #include <yder.h>
 #include <jansson.h>
 #include <ulfius.h>
+#include <time.h>
 #include "../engines/scheduling.h"
 #include "../api/models/process.h"
 #include "../api/models/lists.h"
 #include "../data/models/vowel-list.h"
+
+int compare(const void *a, const void *b)
+{
+    int int_a = *((int *)a);
+    int int_b = *((int *)b);
+
+    if (int_a == int_b)
+        return 0;
+    else if (int_a < int_b)
+        return -1;
+    else
+        return 1;
+}
 
 void *vowel_counter(void *input)
 {
@@ -127,7 +141,7 @@ void *vowel_counter_quant(void *input)
             break;
         }
     }
-    if(!break_flag)
+    if (!break_flag)
         ((vowel_count *)input)->is_finished = true;
 }
 
@@ -144,11 +158,41 @@ void *scheduler()
     {
         if (count_list.size > 0)
         {
+            sleep(3);
+            printf("Scheduling with FCFS\n");
             fcfs();
+            // while (!continue_schedule)
+            // {
+            //     continue;
+            // }
+            // continue_schedule = false;
             clear_count();
+            printf("Scheduling with Priority\n");
+            priority();
+            // while (!continue_schedule)
+            // {
+            //     continue;
+            // }
+            // continue_schedule = false;
+            clear_count();
+            printf("Scheduling with RR\n");
             round_robin();
+            // while (!continue_schedule)
+            // {
+            //     continue;
+            // }
+            // continue_schedule = false;
             clear_count();
+            printf("Scheduling with Lottery\n");
             lottery();
+            // while (!continue_schedule)
+            // {
+            //     continue;
+            // }
+            // continue_schedule = false;
+            clear_count();
+            printf("Scheduling with SRTN\n");
+            srtn();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)
             {
