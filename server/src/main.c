@@ -24,7 +24,7 @@
 #include "./data/models/quantum.h"
 
 #define PORT 5000
-#define QUANTUM 1
+#define QUANTUM 1000
 #define FLAG_GUI "-nel"
 #define FLAG_QUA "-q"
 
