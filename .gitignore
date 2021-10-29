@@ -289,3 +289,4 @@ $RECYCLE.BIN/
 server/.vscode/c_cpp_properties.json
 
 server/.vscode/settings.json
+client/Client

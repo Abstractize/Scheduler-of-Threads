@@ -1,6 +1,12 @@
 #include <gtk/gtk.h>
 #include "../data/models/vowel-list.h"
 #include "./expo-manager.h"
+#include "../properties/enums.h"
+
+const schedule_e get_scheduler_count()
+{
+     return actual_schedule;
+}
 
 const int get_count()
 {

@@ -85,6 +85,4 @@ draw_color(GtkWidget *drawingarea,
            cairo_t *cr,
            const char *color_name);
 
-//const gchar *colors[];
-
 #endif
