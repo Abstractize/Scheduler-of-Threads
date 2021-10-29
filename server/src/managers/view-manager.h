@@ -22,6 +22,7 @@
 #define LIMIT 100
 #define QUEUE 100
 #define TIMEL 200
+#define SLEEP_BAR 500
 
 struct window
 {
