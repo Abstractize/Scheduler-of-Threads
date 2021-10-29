@@ -146,9 +146,9 @@ void *scheduler()
         {
             fcfs();
             clear_count();
-            priority();
+            round_robin();
             clear_count();
-            //lottery();
+            lottery();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)
             {

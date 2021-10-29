@@ -28,7 +28,7 @@ void fcfs()
     }
 }
 
-void priority()
+void round_robin()
 {
     bool finish = false;
     while (!finish)
@@ -52,8 +52,9 @@ void priority()
 void lottery()
 {
     bool finish = false;
-
+    struct vowel_count_node *node;
     int indexes[count_list.size];
+
     srand(time(NULL));
     for (int i = 0; i < count_list.size; i++){
         indexes[i] = i;
@@ -67,12 +68,14 @@ void lottery()
     }
     while (!finish)
     {
-        struct vowel_count_node *node = count_list.start;
+        node = count_list.start;
         finish = true;
-        for (int i = 0; i < count_list.size; i++){
+        int counter = 0;
+        while (counter < count_list.size)
+        {
             while (node != NULL)
             {
-                if (indexes[i] == node->index)
+                if (indexes[counter] == node->index)
                 {
                     pthread_t tid;
                     pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
@@ -81,10 +84,11 @@ void lottery()
                     {
                         finish = false;
                     }
+                    break;
                 }
-                else
-                    node = node->next;
+                node = node->next;
             }
+            counter++;
         }
     }
 }
