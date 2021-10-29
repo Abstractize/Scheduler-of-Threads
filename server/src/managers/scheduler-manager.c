@@ -144,8 +144,8 @@ void *scheduler()
     {
         if (count_list.size > 0)
         {
-            // fcfs();
-            // clear_count();
+            fcfs();
+            clear_count();
             round_robin();
             clear_count();
             lottery();
