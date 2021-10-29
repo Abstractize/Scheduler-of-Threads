@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <math.h>
 #include "./action-manager.h"
 #include "./expo-manager.h"
 #include "../data/models/vowel-list.h"
@@ -40,20 +41,6 @@ struct window
 };
 typedef struct window widgets;
 
-struct information
-{
-    int counter;
-    int current_index;
-    double progress_1;
-    double progress_2;
-    double progress_3;
-    double progress_4;
-    double progress_5;
-    int queue[QUEUE];
-    int timel[TIMEL];
-};
-typedef struct information data;
-
 void count();
 
 void start_gui();
@@ -62,19 +49,15 @@ static void handler_btn_next();
 
 static void handler_btn_clear();
 
-void handler_bar_1_update(gpointer pointer);
-
-void handler_bar_2_update(gpointer pointer);
-
-void handler_bar_3_update(gpointer pointer);
-
-void handler_bar_4_update(gpointer pointer);
-
-void handler_bar_5_update(gpointer pointer);
+static gboolean handler_bar_1_update(GtkProgressBar * pointer);
 
 gboolean refresher_label_algo(gpointer ptr);
 
 gboolean refresher_label_count(gpointer ptr);
+
+static gboolean refresher_queue_flow(gpointer ptr);
+ 
+static gboolean refresher_time_flow(gpointer ptr);
 
 void test_color(GtkFlowBox *flowbox);
 
