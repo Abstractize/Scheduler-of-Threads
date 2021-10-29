@@ -402,11 +402,11 @@ void start_gui()
     g_signal_connect(widg.btn_clear, "clicked", G_CALLBACK(handler_btn_clear), NULL);
 
     // Start Refreshers
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
+    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
+    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
+    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
+    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
+    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_algo), (gpointer)widg.lbl_algo_key);
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_count), (gpointer)widg.lbl_count_key);
     g_object_unref(G_OBJECT(builder));

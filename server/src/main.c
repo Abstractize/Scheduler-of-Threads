@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
 	}
 	
 	const int new_value = get_quantum();
-	//printf("%i\n", new_value);
 
 	if (argc > 3 && strcmp(FLAG_GUI, argv[3]) == 0) // no gui mode
 	{
