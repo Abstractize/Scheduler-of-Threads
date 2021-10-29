@@ -351,7 +351,7 @@ static gboolean handler_bar_1_update(GtkProgressBar *widg)
             float delta = get_progress_1();
             flag = 1;
             char *text;
-            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            text = g_strdup_printf("%i/%i", actual, tmp);
             gtk_progress_bar_set_pulse_step(widg, delta);
             gtk_progress_bar_set_text(widg, text);
             gtk_progress_bar_pulse(widg);
@@ -380,7 +380,7 @@ static gboolean handler_bar_2_update(GtkProgressBar *widg)
             float delta = get_progress_2();
             flag = 1;
             char *text;
-            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            text = g_strdup_printf("%i/%i", actual, tmp);
             gtk_progress_bar_set_pulse_step(widg, delta);
             gtk_progress_bar_set_text(widg, text);
             gtk_progress_bar_pulse(widg);
@@ -409,7 +409,7 @@ static gboolean handler_bar_3_update(GtkProgressBar *widg)
             float delta = get_progress_3();
             flag = 1;
             char *text;
-            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            text = g_strdup_printf("%i/%i", actual, tmp);
             gtk_progress_bar_set_pulse_step(widg, delta);
             gtk_progress_bar_set_text(widg, text);
             gtk_progress_bar_pulse(widg);
@@ -438,7 +438,7 @@ static gboolean handler_bar_4_update(GtkProgressBar *widg)
             float delta = get_progress_4();
             flag = 1;
             char *text;
-            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            text = g_strdup_printf("%i/%i", actual, tmp);
             gtk_progress_bar_set_pulse_step(widg, delta);
             gtk_progress_bar_set_text(widg, text);
             gtk_progress_bar_pulse(widg);
@@ -467,7 +467,7 @@ static gboolean handler_bar_5_update(GtkProgressBar *widg)
             float delta = get_progress_5();
             flag = 1;
             char *text;
-            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            text = g_strdup_printf("%i/%i", actual, tmp);
             gtk_progress_bar_set_pulse_step(widg, delta);
             gtk_progress_bar_set_text(widg, text);
             gtk_progress_bar_pulse(widg);
@@ -478,8 +478,20 @@ static gboolean handler_bar_5_update(GtkProgressBar *widg)
     return TRUE;
 }
 
-static gboolean refresher_queue_flow(gpointer ptr)
+static gboolean refresher_queue_flow(GtkFlowBox *flowbox)
 {
+    static int actual = 0;
+
+    int tmp = get_count();
+    int dif = tmp - actual;
+    if (dif > 0)
+    {
+        for (int j = 0; j < dif; j++)
+        {
+            gtk_flow_box_insert(flowbox, color_swatch_new(colors[j]), -1);
+            actual++;
+        }
+    }
     return TRUE;
 }
 
@@ -567,7 +579,7 @@ void start_gui()
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_count), (gpointer)widg.lbl_count_key);
 
     // Experimental
-    gdk_threads_add_timeout(500, G_SOURCE_FUNC(refresher_time_flow), widg.fbx_time);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_queue_flow), widg.fbx_queue);
     g_object_unref(G_OBJECT(builder));
 }
 
