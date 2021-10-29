@@ -26,6 +26,7 @@ void push_count_element(struct process *proc_assign, double quantum_assign)
     new_count->quantum = quantum_assign;
 
     struct vowel_count_node *new_node = (struct vowel_count_node *)malloc(sizeof(struct vowel_count_node));
+    new_node->index = count_list.size;
     new_node->count = new_count;
     new_node->next = NULL;
     

@@ -20,6 +20,7 @@ typedef struct
 
 struct vowel_count_node
 {
+    int index;
     vowel_count *count;
     struct vowel_count_node *next;
 };

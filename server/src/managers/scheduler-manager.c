@@ -2,6 +2,7 @@
 #include <yder.h>
 #include <jansson.h>
 #include <ulfius.h>
+#include "../engines/scheduling.h"
 #include "../api/models/process.h"
 #include "../api/models/lists.h"
 #include "../data/models/vowel-list.h"
@@ -135,48 +136,6 @@ void continue_schedule_method()
     continue_schedule = true;
 }
 
-void fcfs()
-{
-    bool finish = false;
-    while (!finish)
-    {
-        struct vowel_count_node *node = count_list.start;
-        finish = true;
-        while (node != NULL)
-        {
-            pthread_t tid;
-            pthread_create(&tid, NULL, vowel_counter, (void *)node->count);
-            pthread_join(tid, NULL);
-            if (finish && !node->count->is_finished)
-            {
-                finish = false;
-            }
-            node = node->next;
-        }
-    }
-}
-
-void priority()
-{
-    bool finish = false;
-    while (!finish)
-    {
-        struct vowel_count_node *node = count_list.start;
-        finish = true;
-        while (node != NULL)
-        {
-            pthread_t tid;
-            pthread_create(&tid, NULL, vowel_counter_quant, (void *)node->count);
-            pthread_join(tid, NULL);
-            if (finish && !node->count->is_finished)
-            {
-                finish = false;
-            }
-            node = node->next;
-        }
-    }
-}
-
 void *scheduler()
 {
     continue_schedule = false;
@@ -188,6 +147,8 @@ void *scheduler()
             fcfs();
             clear_count();
             priority();
+            clear_count();
+            //lottery();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)
             {
