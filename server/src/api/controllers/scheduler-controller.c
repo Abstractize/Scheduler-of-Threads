@@ -4,6 +4,7 @@
 #include <ulfius.h>
 #include "../models/lists.h"
 #include "../models/process.h"
+#include "../../data/accessors/quantum-accessor.h"
 
 #define OBJ_MAIN "payload"
 #define OBJ_PATA "Ta"
@@ -30,7 +31,9 @@ int callback_post(const struct _u_request *request, struct _u_response *response
             data_fn = json_object_get(value, OBJ_PAFN); // Get Key OBJ_PAFN
             data_fc = json_object_get(value, OBJ_PAFC); // Get Key OBJ_PAFC
             
-            setup_proc(json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc), 0.3);
+            double new_quatum = get_quantum() / 1000;
+
+            setup_proc(json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc), new_quatum);
             y_log_message(Y_LOG_LEVEL_DEBUG, "\t%i \t%i \t%s \t%s", index, json_integer_value(data_ta), json_string_value(data_fn), json_string_value(data_fc));
         }
     }

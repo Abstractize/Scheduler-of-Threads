@@ -27,9 +27,11 @@ void *vowel_counter(void *input)
     strcpy(to_count, ((vowel_count *)input)->proc->file_content);
     int len = strlen(to_count);
 
-    for (int i = ((vowel_count *)input)->current_point; i < ((vowel_count *)input)->len; i++)
+    for (((vowel_count *)input)->current_point;
+         ((vowel_count *)input)->current_point < ((vowel_count *)input)->len;
+         ((vowel_count *)input)->current_point++)
     {
-        switch (to_count[i])
+        switch (to_count[((vowel_count *)input)->current_point])
         {
         case 'A':
             ((vowel_count *)input)->a_count++;
@@ -85,9 +87,11 @@ void *vowel_counter_quant(void *input)
     strcpy(to_count, ((vowel_count *)input)->proc->file_content);
     int len = strlen(to_count);
     bool break_flag = false;
-    for (int i = ((vowel_count *)input)->current_point; i < ((vowel_count *)input)->len; i++)
+    for (((vowel_count *)input)->current_point;
+         ((vowel_count *)input)->current_point < ((vowel_count *)input)->len;
+         ((vowel_count *)input)->current_point++)
     {
-        switch (to_count[i])
+        switch (to_count[((vowel_count *)input)->current_point])
         {
         case 'A':
             ((vowel_count *)input)->a_count++;
