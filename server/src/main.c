@@ -13,8 +13,11 @@
 #include <gtk/gtk.h>
 #include "./api/routes/routes.h"
 #include "./managers/scheduler-manager.h"
+#include "./managers/action-manager.h"
+#include "./managers/expo-manager.h"
 #include "./managers/view-manager.h"
 #include "./managers/listener-manager.h"
+
 
 #define PORT 5000
 #define QUANTUM 1
@@ -51,6 +54,7 @@ int main(int argc, char *argv[])
 		{
 			printf("[!] Cannot create thread\n");
 		}
+
 		gtk_init(&argc, &argv);
 		/* Construct a GtkBuilder instance and load our UI description */
 		start_gui();

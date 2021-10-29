@@ -1,5 +1,7 @@
-
 #include <gtk/gtk.h>
+#include "./action-manager.h"
+#include "./expo-manager.h"
+#include "../data/models/vowel-list.h"
 
 #ifndef VIEW_MANAGER_HEADER_H
 #define VIEW_MANAGER_HEADER_H
@@ -15,8 +17,11 @@
 #define BAR_PROG_5 "bar_prog_5"
 #define BTN_RUNN "btn_runn"
 #define BTN_CLEAR "btn_clear"
-#define LBL_ALGO "lbl_algo"
-#define LBL_COUNT "lbl_count"
+#define LBL_ALGO "lbl_algo_key"
+#define LBL_COUNT "lbl_count_key"
+#define LIMIT 100
+#define QUEUE 100
+#define TIMEL 200
 
 struct window
 {
@@ -34,13 +39,41 @@ struct window
 };
 typedef struct window widgets;
 
+struct information
+{
+    int counter;
+    int current_index;
+    double progress_1;
+    double progress_2;
+    double progress_3;
+    double progress_4;
+    double progress_5;
+    int queue[QUEUE];
+    int timel[TIMEL];
+};
+typedef struct information data;
+
+void count();
+
 void start_gui();
 
 static void handler_btn_next();
 
 static void handler_btn_clear();
 
-static void handler_bar_update(widgets *widg);
+void handler_bar_1_update(gpointer pointer);
+
+void handler_bar_2_update(gpointer pointer);
+
+void handler_bar_3_update(gpointer pointer);
+
+void handler_bar_4_update(gpointer pointer);
+
+void handler_bar_5_update(gpointer pointer);
+
+gboolean refresher_label_algo(gpointer ptr);
+
+gboolean refresher_label_count(gpointer ptr);
 
 void test_color(GtkFlowBox *flowbox);
 
@@ -51,5 +84,7 @@ static gboolean
 draw_color(GtkWidget *drawingarea,
            cairo_t *cr,
            const char *color_name);
+
+//const gchar *colors[];
 
 #endif
