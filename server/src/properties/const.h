@@ -1,2 +1,2 @@
-#define BIGENOUGH 512
+#define BIGENOUGH 4096
 #define HIST_PROCESS 10

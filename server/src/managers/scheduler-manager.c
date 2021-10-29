@@ -160,38 +160,43 @@ void *scheduler()
         {
             sleep(3);
             printf("Scheduling with FCFS\n");
+            actual_schedule = FCFS;
             fcfs();
-            // while (!continue_schedule)
-            // {
-            //     continue;
-            // }
-            // continue_schedule = false;
+            while (!continue_schedule)
+            {
+                continue;
+            }
+            continue_schedule = false;
             clear_count();
             printf("Scheduling with Priority\n");
+            actual_schedule = PRIORITY;
             priority();
-            // while (!continue_schedule)
-            // {
-            //     continue;
-            // }
-            // continue_schedule = false;
+            while (!continue_schedule)
+            {
+                continue;
+            }
+            continue_schedule = false;
             clear_count();
             printf("Scheduling with RR\n");
+            actual_schedule = RR;
             round_robin();
-            // while (!continue_schedule)
-            // {
-            //     continue;
-            // }
-            // continue_schedule = false;
+            while (!continue_schedule)
+            {
+                continue;
+            }
+            continue_schedule = false;
             clear_count();
             printf("Scheduling with Lottery\n");
+            actual_schedule = LOTTERY;
             lottery();
-            // while (!continue_schedule)
-            // {
-            //     continue;
-            // }
-            // continue_schedule = false;
+            while (!continue_schedule)
+            {
+                continue;
+            }
+            continue_schedule = false;
             clear_count();
             printf("Scheduling with SRTN\n");
+            actual_schedule = SRTN;
             srtn();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)

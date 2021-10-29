@@ -330,11 +330,11 @@ gchar *colors[] = {"AliceBlue",
                    "grey63",
                    "grey64"};
 
-gchar *algorithms[] = {"FCFS", "Priority", "Lottery", "Round Robin", "STRN"};
+gchar *algorithms[] = {"FCFS", "Priority", "Round Robin", "Lottery", "STRN"};
 
 gboolean refresher_label_algo(gpointer ptr)
 {
-    static int s_count = 0; // TODO GET INDEX
+    int s_count = (int)get_scheduler_count();
     GtkLabel *label_algo = (GtkLabel *)ptr;
     g_return_val_if_fail(GTK_IS_LABEL(label_algo), FALSE);
     gtk_label_set_label(ptr, algorithms[s_count]);
