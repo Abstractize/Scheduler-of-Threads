@@ -401,20 +401,14 @@ void start_gui()
     g_signal_connect(widg.btn_runn, "clicked", G_CALLBACK(handler_btn_next), NULL);
     g_signal_connect(widg.btn_clear, "clicked", G_CALLBACK(handler_btn_clear), NULL);
 
-    //g_signal_connect(widg.btn_clear, "clicked", G_CALLBACK(action_next_queue), (gpointer)widg.fbx_queue);
-    //gtk_entry_set_progress_fraction(widg.bar_prog_1, 0.4);
     // Start Refreshers
-    gdk_threads_add_timeout(1000, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
-    gdk_threads_add_timeout(1500, G_SOURCE_FUNC(refresher_label_algo), (gpointer)widg.lbl_algo_key);
-    gdk_threads_add_timeout(1500, G_SOURCE_FUNC(refresher_label_count), (gpointer)widg.lbl_count_key);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(count), NULL);
-    //gdk_threads_add_timeout(1000, G_SOURCE_FUNC(test_color), (gpointer)widg.fbx_queue);
-    //test_color(widg.fbx_time);
-    //test_color(widg.fbx_queue);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_algo), (gpointer)widg.lbl_algo_key);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_count), (gpointer)widg.lbl_count_key);
     g_object_unref(G_OBJECT(builder));
 }
 
@@ -424,9 +418,11 @@ void handler_bar_1_update(gpointer pointer)
     if (GTK_IS_PROGRESS_BAR(widg))
     {
         gdouble progress = get_progress_1();
-        //gtk_progress_bar_set_pulse_step(widg, progress);
-        //gtk_progress_bar_pulse(widg);
+        const gchar *text = g_strdup_printf("%.2f", progress);
+        g_print("%s", text);
         gtk_progress_bar_set_fraction(widg, progress);
+        gtk_progress_bar_set_pulse_step(widg, progress);
+        gtk_progress_bar_pulse(widg);
     }
 }
 
@@ -435,9 +431,12 @@ void handler_bar_2_update(gpointer pointer)
     GtkProgressBar *widg = (GtkProgressBar *)pointer;
     if (GTK_IS_PROGRESS_BAR(widg))
     {
-        float d = get_progress_2();
-        g_print("0.2%f", d);
-        gtk_progress_bar_set_fraction(widg, get_progress_2());
+        gdouble progress = get_progress_2();
+        const gchar *text = g_strdup_printf("%.2f", progress);
+        g_print("%s", text);
+        gtk_progress_bar_set_fraction(widg, progress);
+        gtk_progress_bar_set_pulse_step(widg, progress);
+        gtk_progress_bar_pulse(widg);
     }
 }
 
@@ -446,7 +445,12 @@ void handler_bar_3_update(gpointer pointer)
     GtkProgressBar *widg = (GtkProgressBar *)pointer;
     if (GTK_IS_PROGRESS_BAR(widg))
     {
-        gtk_progress_bar_set_fraction(widg, get_progress_3());
+        gdouble progress = get_progress_3();
+        const gchar *text = g_strdup_printf("%.2f", progress);
+        g_print("%s", text);
+        gtk_progress_bar_set_fraction(widg, progress);
+        gtk_progress_bar_set_pulse_step(widg, progress);
+        gtk_progress_bar_pulse(widg);
     }
 }
 
@@ -455,7 +459,12 @@ void handler_bar_4_update(gpointer pointer)
     GtkProgressBar *widg = (GtkProgressBar *)pointer;
     if (GTK_IS_PROGRESS_BAR(widg))
     {
-        gtk_progress_bar_set_fraction(widg, get_progress_4());
+        gdouble progress = get_progress_4();
+        const gchar *text = g_strdup_printf("%.2f", progress);
+        g_print("%s", text);
+        gtk_progress_bar_set_fraction(widg, progress);
+        gtk_progress_bar_set_pulse_step(widg, progress);
+        gtk_progress_bar_pulse(widg);
     }
 }
 
@@ -464,7 +473,12 @@ void handler_bar_5_update(gpointer pointer)
     GtkProgressBar *widg = (GtkProgressBar *)pointer;
     if (GTK_IS_PROGRESS_BAR(widg))
     {
-        gtk_progress_bar_set_fraction(widg, get_progress_5());
+        gdouble progress = get_progress_5();
+        const gchar *text = g_strdup_printf("%.2f", progress);
+        g_print("%s", text);
+        gtk_progress_bar_set_fraction(widg, progress);
+        gtk_progress_bar_set_pulse_step(widg, progress);
+        gtk_progress_bar_pulse(widg);
     }
 }
 
