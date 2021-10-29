@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <math.h>
 #include "./view-manager.h"
 #include "./action-manager.h"
 #include "./expo-manager.h"
@@ -332,6 +333,161 @@ gchar *colors[] = {"AliceBlue",
 
 gchar *algorithms[] = {"FCFS", "Priority", "Round Robin", "Lottery", "STRN"};
 
+static gboolean handler_bar_1_update(GtkProgressBar *widg)
+{
+    const float progress = 0;
+    static int actual = 0;
+    static int max = 0;
+    static int flag = 0;
+    if (GTK_IS_PROGRESS_BAR(widg) && get_scheduler_count() == FCFS)
+    {
+        int tmp = get_count();
+        if (tmp == 0 && flag == 0)
+        {
+            flag = 1;
+        }
+        else if (actual <= tmp)
+        {
+            float delta = get_progress_1();
+            flag = 1;
+            char *text;
+            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            gtk_progress_bar_set_pulse_step(widg, delta);
+            gtk_progress_bar_set_text(widg, text);
+            gtk_progress_bar_pulse(widg);
+            g_free(text);
+            actual++;
+        }
+    }
+    return TRUE;
+}
+
+static gboolean handler_bar_2_update(GtkProgressBar *widg)
+{
+    const float progress = 0;
+    static int actual = 0;
+    static int max = 0;
+    static int flag = 0;
+    if (GTK_IS_PROGRESS_BAR(widg) && get_scheduler_count() == PRIORITY)
+    {
+        int tmp = get_count();
+        if (tmp == 0 && flag == 0)
+        {
+            flag = 1;
+        }
+        else if (actual <= tmp)
+        {
+            float delta = get_progress_2();
+            flag = 1;
+            char *text;
+            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            gtk_progress_bar_set_pulse_step(widg, delta);
+            gtk_progress_bar_set_text(widg, text);
+            gtk_progress_bar_pulse(widg);
+            g_free(text);
+            actual++;
+        }
+    }
+    return TRUE;
+}
+
+static gboolean handler_bar_3_update(GtkProgressBar *widg)
+{
+    const float progress = 0;
+    static int actual = 0;
+    static int max = 0;
+    static int flag = 0;
+    if (GTK_IS_PROGRESS_BAR(widg) && get_scheduler_count() == RR)
+    {
+        int tmp = get_count();
+        if (tmp == 0 && flag == 0)
+        {
+            flag = 1;
+        }
+        else if (actual <= tmp)
+        {
+            float delta = get_progress_3();
+            flag = 1;
+            char *text;
+            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            gtk_progress_bar_set_pulse_step(widg, delta);
+            gtk_progress_bar_set_text(widg, text);
+            gtk_progress_bar_pulse(widg);
+            g_free(text);
+            actual++;
+        }
+    }
+    return TRUE;
+}
+
+static gboolean handler_bar_4_update(GtkProgressBar *widg)
+{
+    const float progress = 0;
+    static int actual = 0;
+    static int max = 0;
+    static int flag = 0;
+    if (GTK_IS_PROGRESS_BAR(widg) && get_scheduler_count() == LOTTERY)
+    {
+        int tmp = get_count();
+        if (tmp == 0 && flag == 0)
+        {
+            flag = 1;
+        }
+        else if (actual <= tmp)
+        {
+            float delta = get_progress_4();
+            flag = 1;
+            char *text;
+            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            gtk_progress_bar_set_pulse_step(widg, delta);
+            gtk_progress_bar_set_text(widg, text);
+            gtk_progress_bar_pulse(widg);
+            g_free(text);
+            actual++;
+        }
+    }
+    return TRUE;
+}
+
+static gboolean handler_bar_5_update(GtkProgressBar *widg)
+{
+    const float progress = 0;
+    static int actual = 0;
+    static int max = 0;
+    static int flag = 0;
+    if (GTK_IS_PROGRESS_BAR(widg) && get_scheduler_count() == SRTN)
+    {
+        int tmp = get_count();
+        if (tmp == 0 && flag == 0)
+        {
+            flag = 1;
+        }
+        else if (actual <= tmp)
+        {
+            float delta = get_progress_5();
+            flag = 1;
+            char *text;
+            text = g_strdup_printf("%i/%i\n", actual, tmp);
+            gtk_progress_bar_set_pulse_step(widg, delta);
+            gtk_progress_bar_set_text(widg, text);
+            gtk_progress_bar_pulse(widg);
+            g_free(text);
+            actual++;
+        }
+    }
+    return TRUE;
+}
+
+static gboolean refresher_queue_flow(gpointer ptr)
+{
+    return TRUE;
+}
+
+static gboolean refresher_time_flow(gpointer ptr)
+{
+    return TRUE;
+}
+
 gboolean refresher_label_algo(gpointer ptr)
 {
     int s_count = (int)get_scheduler_count();
@@ -402,84 +558,17 @@ void start_gui()
     g_signal_connect(widg.btn_clear, "clicked", G_CALLBACK(handler_btn_clear), NULL);
 
     // Start Refreshers
-    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
-    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
-    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
-    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
-    //gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_1_update), (gpointer)widg.bar_prog_1);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_2_update), (gpointer)widg.bar_prog_2);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_3_update), (gpointer)widg.bar_prog_3);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_4_update), (gpointer)widg.bar_prog_4);
+    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(handler_bar_5_update), (gpointer)widg.bar_prog_5);
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_algo), (gpointer)widg.lbl_algo_key);
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_label_count), (gpointer)widg.lbl_count_key);
+
+    // Experimental
+    gdk_threads_add_timeout(500, G_SOURCE_FUNC(refresher_time_flow), widg.fbx_time);
     g_object_unref(G_OBJECT(builder));
-}
-
-void handler_bar_1_update(gpointer pointer)
-{
-    GtkProgressBar *widg = (GtkProgressBar *)pointer;
-    if (GTK_IS_PROGRESS_BAR(widg))
-    {
-        gdouble progress = get_progress_1();
-        const gchar *text = g_strdup_printf("%.2f", progress);
-        g_print("%s", text);
-        gtk_progress_bar_set_fraction(widg, progress);
-        gtk_progress_bar_set_pulse_step(widg, progress);
-        gtk_progress_bar_pulse(widg);
-    }
-}
-
-void handler_bar_2_update(gpointer pointer)
-{
-    GtkProgressBar *widg = (GtkProgressBar *)pointer;
-    if (GTK_IS_PROGRESS_BAR(widg))
-    {
-        gdouble progress = get_progress_2();
-        const gchar *text = g_strdup_printf("%.2f", progress);
-        g_print("%s", text);
-        gtk_progress_bar_set_fraction(widg, progress);
-        gtk_progress_bar_set_pulse_step(widg, progress);
-        gtk_progress_bar_pulse(widg);
-    }
-}
-
-void handler_bar_3_update(gpointer pointer)
-{
-    GtkProgressBar *widg = (GtkProgressBar *)pointer;
-    if (GTK_IS_PROGRESS_BAR(widg))
-    {
-        gdouble progress = get_progress_3();
-        const gchar *text = g_strdup_printf("%.2f", progress);
-        g_print("%s", text);
-        gtk_progress_bar_set_fraction(widg, progress);
-        gtk_progress_bar_set_pulse_step(widg, progress);
-        gtk_progress_bar_pulse(widg);
-    }
-}
-
-void handler_bar_4_update(gpointer pointer)
-{
-    GtkProgressBar *widg = (GtkProgressBar *)pointer;
-    if (GTK_IS_PROGRESS_BAR(widg))
-    {
-        gdouble progress = get_progress_4();
-        const gchar *text = g_strdup_printf("%.2f", progress);
-        g_print("%s", text);
-        gtk_progress_bar_set_fraction(widg, progress);
-        gtk_progress_bar_set_pulse_step(widg, progress);
-        gtk_progress_bar_pulse(widg);
-    }
-}
-
-void handler_bar_5_update(gpointer pointer)
-{
-    GtkProgressBar *widg = (GtkProgressBar *)pointer;
-    if (GTK_IS_PROGRESS_BAR(widg))
-    {
-        gdouble progress = get_progress_5();
-        const gchar *text = g_strdup_printf("%.2f", progress);
-        g_print("%s", text);
-        gtk_progress_bar_set_fraction(widg, progress);
-        gtk_progress_bar_set_pulse_step(widg, progress);
-        gtk_progress_bar_pulse(widg);
-    }
 }
 
 void test_color(GtkFlowBox *flowbox)
