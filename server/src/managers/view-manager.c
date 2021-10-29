@@ -1,16 +1,52 @@
 #include <gtk/gtk.h>
 #include "./view-manager.h"
 
-void start_gui(GtkBuilder *builder, GtkProgressBar *bar_prog_1, GtkProgressBar *bar_prog_2, GtkProgressBar *bar_prog_3, GtkProgressBar *bar_prog_4, GtkProgressBar *bar_prog_5, GtkFlowBox *fbx_queue, GtkFlowBox *fbx_time)
+static void handler_btn_next()
 {
-    builder = gtk_builder_new_from_file("builderx.ui");
-    bar_prog_1 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_1));
-    bar_prog_2 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_2));
-    bar_prog_3 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_3));
-    bar_prog_4 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_4));
-    bar_prog_5 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_5));
-    fbx_queue = GTK_FLOW_BOX(gtk_builder_get_object(builder, FBX_QUEUE));
-    fbx_time = GTK_FLOW_BOX(gtk_builder_get_object(builder, FBX_TIME));
+    g_print("Provoco la burbuja\n");
+}
+
+static void handler_btn_clear()
+{
+    g_print("Me voy como si nada\n");
+}
+
+void start_gui()
+{
+    widgets widg;
+    GtkBuilder *builder;
+    GObject *window;
+    GError *error = NULL;
+
+    builder = gtk_builder_new_from_file(BUILD_PATH);
+
+    // Instance Widgets
+    widg.bar_prog_1 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_1));
+    widg.bar_prog_2 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_2));
+    widg.bar_prog_3 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_3));
+    widg.bar_prog_4 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_4));
+    widg.bar_prog_5 = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, BAR_PROG_5));
+    widg.btn_runn = GTK_BUTTON(gtk_builder_get_object(builder, BTN_RUNN));
+    widg.btn_clear = GTK_BUTTON(gtk_builder_get_object(builder, BTN_CLEAR));
+    widg.lbl_algo_key = GTK_LABEL(gtk_builder_get_object(builder, LBL_ALGO));
+    widg.lbl_count_key = GTK_LABEL(gtk_builder_get_object(builder, LBL_COUNT));
+    widg.fbx_queue = GTK_FLOW_BOX(gtk_builder_get_object(builder, FBX_QUEUE));
+    widg.fbx_time = GTK_FLOW_BOX(gtk_builder_get_object(builder, FBX_TIME));
+    //gtk_builder_connect_signals(builder, &widg);
+
+    // Connect Signals
+    g_signal_connect(widg.btn_runn, "clicked", G_CALLBACK(handler_btn_next), NULL);
+    //g_signal_connect(widg.btn_clear, "clicked", G_CALLBACK(handler_btn_clear), NULL);
+    //gtk_progress_bar_pulse(widg.bar_prog_1);
+    // Start Refreshers
+    gdk_threads_add_timeout(1000, &handler_bar_update, &widg);
+
+    g_object_unref(G_OBJECT(builder));
+}
+
+static void handler_bar_update(widgets *widg)
+{
+    gtk_progress_bar_pulse(widg->bar_prog_1);
 }
 
 void test_color(GtkFlowBox *flowbox)
