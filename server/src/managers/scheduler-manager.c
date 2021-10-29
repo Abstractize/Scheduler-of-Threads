@@ -144,11 +144,11 @@ void *scheduler()
     {
         if (count_list.size > 0)
         {
-            fcfs();
+            // fcfs();
+            // clear_count();
+            round_robin();
             clear_count();
-            priority();
-            clear_count();
-            //lottery();
+            lottery();
             struct vowel_count_node *actual = count_list.start;
             while (actual != NULL)
             {
