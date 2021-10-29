@@ -28,7 +28,7 @@ void websocket_manager_callback(const struct _u_request *request,
         "u", state.u[0], state.u[1], state.u[2], state.u[3], state.u[4], state.u[5], state.u[6], state.u[7], state.u[8], state.u[9]
       );
       char *json = json_dumps(message, JSON_COMPACT);
-      y_log_message(Y_LOG_LEVEL_DEBUG, "Data for Name: %s", json);
+
       int ret = ulfius_websocket_send_message(websocket_manager, U_WEBSOCKET_OPCODE_TEXT, strlen(json), json);
       o_free(json);
       json_decref(message);

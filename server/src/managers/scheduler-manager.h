@@ -12,8 +12,6 @@
 void *vowel_counter(void *input);
 void *vowel_counter_quant(void *input);
 void continue_schedule_method();
-void fcfs();
-void priority();
 void *scheduler();
 
 #endif
