@@ -8,6 +8,7 @@
 #define VIEW_MANAGER_HEADER_H
 
 #define BUILD_PATH "builderx.ui"
+#define BIGENOUGH 100
 
 #define FBX_QUEUE "fbx_queue"
 #define FBX_TIME "fbx_time"
@@ -41,6 +42,19 @@ struct window
 };
 typedef struct window widgets;
 
+struct queue_node
+{
+    int posic_index;
+    int color_index;
+    struct queue_element *next;
+};
+
+struct queue_node *queue_node_head;
+
+gchar queue_colors[BIGENOUGH];
+
+int generate_random(int l, int r);
+
 void count();
 
 void start_gui();
@@ -49,7 +63,15 @@ static void handler_btn_next();
 
 static void handler_btn_clear();
 
-static gboolean handler_bar_1_update(GtkProgressBar * pointer);
+static gboolean handler_bar_1_update(GtkProgressBar *pointer);
+
+static gboolean handler_bar_2_update(GtkProgressBar *pointer);
+
+static gboolean handler_bar_3_update(GtkProgressBar *pointer);
+
+static gboolean handler_bar_4_update(GtkProgressBar *pointer);
+
+static gboolean handler_bar_5_update(GtkProgressBar *pointer);
 
 static gboolean handler_bar_2_update(GtkProgressBar * pointer);
 
@@ -64,8 +86,9 @@ gboolean refresher_label_algo(gpointer ptr);
 gboolean refresher_label_count(gpointer ptr);
 
 static gboolean refresher_queue_flow(GtkFlowBox *flowbox);
- 
-static gboolean refresher_time_flow(gpointer ptr);
+
+static gboolean refresher_time_flow(GtkFlowBox *flowbox);
+
 
 void test_color(GtkFlowBox *flowbox);
 
