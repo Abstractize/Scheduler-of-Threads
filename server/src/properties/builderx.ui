@@ -278,6 +278,7 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="pulse_step">0</property>
+                    <property name="text" translatable="yes">0/0</property>
                     <property name="show_text">True</property>
                   </object>
                   <packing>
@@ -292,6 +293,7 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="pulse_step">0</property>
+                    <property name="text" translatable="yes">0/0</property>
                     <property name="show_text">True</property>
                   </object>
                   <packing>
@@ -306,6 +308,7 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="pulse_step">0</property>
+                    <property name="text" translatable="yes">0/0</property>
                     <property name="show_text">True</property>
                   </object>
                   <packing>
@@ -320,6 +323,7 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="pulse_step">0</property>
+                    <property name="text" translatable="yes">0/0</property>
                     <property name="show_text">True</property>
                   </object>
                   <packing>
@@ -334,6 +338,7 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="pulse_step">0</property>
+                    <property name="text" translatable="yes">0/0</property>
                     <property name="show_text">True</property>
                   </object>
                   <packing>
@@ -367,7 +372,7 @@
                   <object class="GtkLabel" id="lbl_algo_4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Round Robin</property>
+                    <property name="label" translatable="yes">Lottery</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -389,7 +394,7 @@
                   <object class="GtkLabel" id="lbl_algo_3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Lottery</property>
+                    <property name="label" translatable="yes">Round Robin</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
