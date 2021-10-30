@@ -73,6 +73,14 @@ static gboolean handler_bar_4_update(GtkProgressBar *pointer);
 
 static gboolean handler_bar_5_update(GtkProgressBar *pointer);
 
+static gboolean handler_bar_2_update(GtkProgressBar * pointer);
+
+static gboolean handler_bar_3_update(GtkProgressBar * pointer);
+
+static gboolean handler_bar_4_update(GtkProgressBar * pointer);
+
+static gboolean handler_bar_5_update(GtkProgressBar * pointer);
+
 gboolean refresher_label_algo(gpointer ptr);
 
 gboolean refresher_label_count(gpointer ptr);
@@ -80,6 +88,7 @@ gboolean refresher_label_count(gpointer ptr);
 static gboolean refresher_queue_flow(GtkFlowBox *flowbox);
 
 static gboolean refresher_time_flow(GtkFlowBox *flowbox);
+
 
 void test_color(GtkFlowBox *flowbox);
 

@@ -207,14 +207,17 @@ static gboolean handler_bar_5_update(GtkProgressBar *widg)
 static gboolean refresher_queue_flow(GtkFlowBox *flowbox)
 {
     static int actual = 0;
+
     int tmp = get_count();
     int dif = tmp - actual;
     if (dif > 0)
     {
         for (int j = 0; j < dif; j++)
         {
+
             int rad = generate_random(0, 42);
             gtk_flow_box_insert(flowbox, color_swatch_new(colors[rad]), -1);
+
             actual++;
         }
     }
@@ -322,7 +325,6 @@ void start_gui()
 
     // Experimental
     gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_queue_flow), widg.fbx_queue);
-    gdk_threads_add_timeout(SLEEP_BAR, G_SOURCE_FUNC(refresher_time_flow), widg.fbx_time);
     g_object_unref(G_OBJECT(builder));
 }
 
